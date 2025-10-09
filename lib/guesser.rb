@@ -9,21 +9,18 @@ class Guesser
   def make_guess
     # initialize the empty list of guesses
     guess_list = []
-    # Ask to pick a coloro and check that no more and no less than 4 colors are inside
-    until guess_list.count == 4
-      puts "Please #{@name}, pick a color #{@colors_list}. Order matters. Choose...wisely!"
+    # Ask to pick a color and check that no more and no less than 4 colors are inside.
+    # Also check if all teh color inside guess_list are included in the original color_list
+    until guess_list.count == 4 && guess_list.all? { |color| @colors_list.include?(color) }
+      puts "Please #{@name}, pick four colors from #{@colors_list}. Order matters. Choose...wisely!"
+      # get the answer from the player
       color = gets.chomp.upcase
-      # check that the answer is a color in the list
-      until @colors_list.include?(color)
-        puts "This color is not in the list. Please choose another."
-        puts "Pick a color #{@colors_list}. Order matters"
-        color = gets.chomp.upcase
-      end
-      # append the color to the list and gives feedback
-      guess_list.append(color)
-      p "Your list of guess: #{guess_list}"
+      # spit the string into ana array and pass it to guess_list
+      guess_list = color.split
     end
-    # once 4 colors are picked return the new guess list
+    # if picks are accepted, give feedback
+    puts "Guess accepted. Your pick are #{guess_list}. Good Luck!"
+    # return the guesses
     guess_list
   end
 end
