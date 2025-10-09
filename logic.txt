@@ -1,0 +1,44 @@
+MASTERMIND RULES
+
+Guess the computer secret code in a certain number of turn (10?).
+
+The code that must be guessed is a list of position + color. 
+Four positions and six colors available
+
+Code maker gives feedback to the guesser. 
+
+IF position and color are correct
+ELSIF color is in the code but the position is not correct
+ELSE color is not in the code
+
+IF the player guesses the secret code in less than 10 turns wins. ELSE computer wins
+
+
+PROJECT STRUCTURE
+
+CLASS Guesser
+Guesser is initialized with just a name. 
+It needs a method that will allow him to choose 4 colors adding them to an array(an index will be needed to check the guess againts 
+the guessed_array). The method will return the choices in the form af an array
+
+CLASS Maker
+Creator (computer for now) will be initilized with a name. 
+It needs a method that randomly picks colors from a list and positions them in a new (previously empty) list. It will return the list 
+
+CLASS Match
+The main logic of the game will run here
+It will take the list from the creator and check it against the Guesser choices giving feedback after each turn.
+It will have a loop counting up top 10 and then end the game if the code has not been guessed.
+
+LOGIC BEHIND THE FEEDBACK
+Loop through the guessed_array and for each element in the array of guesses check if they have same index and same color
+
+IF same index and color the guess is correct. 
+    Guess can be added to a new list (this list will have for X at the start) which will store the result of each turn
+    and replace the X at the correspoding index. Guess can also be removed from the guessed_array (to avoid been taken into account again). It 
+    can be replaced by an X value
+ELSIF color is included in the guessed_array (guessed_array.include?(guess)) but index does not correspond
+ELSE 
+    Not in the list
+
+When all colors have been checked give the feedback: a count of exact matches or correct color (but not correct position)
