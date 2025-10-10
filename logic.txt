@@ -41,4 +41,5 @@ ELSIF color is included in the guessed_array (guessed_array.include?(guess)) but
 ELSE 
     Not in the list
 
-When all colors have been checked give the feedback: a count of exact matches or correct color (but not correct position)
+When all colors have been checked give the feedback: a count of exact matches or correct color (but not correct position). 
+The colors are not declared

@@ -1,9 +1,8 @@
 # A class that manages the player who is guessing the secret code. It takes a name as an argument and choose the colors to make the guess
 class Guesser
-  def initialize(name)
+  def initialize(name, list)
     @name = name
-    # TODO: Refactor @colors_list to be passed in from the Match class.
-    @colors_list = %w[RED BLUE YELLOW GREEN PURPLE ORANGE]
+    @colors_list = list
   end
 
   def make_guess
