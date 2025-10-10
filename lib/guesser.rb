@@ -1,4 +1,4 @@
-# A class that manages the player who is guessing the secret code. It takes a name as an argument and choose the colors
+# A class that manages the player who is guessing the secret code. It takes a name as an argument and choose the colors to make the guess
 class Guesser
   def initialize(name)
     @name = name
@@ -24,7 +24,3 @@ class Guesser
     guess_list
   end
 end
-
-guesser = Guesser.new("Player One")
-
-guesser.make_guess
