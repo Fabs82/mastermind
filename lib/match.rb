@@ -15,21 +15,17 @@ class Match
 
   def play_game
     @secret_code = @maker.make_code
-    game_is_on = true
-    while game_is_on
+    while @turn_number <= 10
       puts "\n---- TURN:#{@turn_number} ----"
       if single_round == true
         puts "You found the code. Congratulations!"
-        break
-      elsif @turn_number == 10
-        puts "Time is up! You lost"
-        break
-      else
-        @turn_number += 1
-        puts "---- Previous guess ----"
-        storage.each { |guess| p guess }
+        return
       end
+      @turn_number += 1
+      puts "---- Previous guess ----"
+      @storage.each { |guess| p guess }
     end
+    puts "Time is up! You lost"
   end
 
   def single_round
@@ -74,6 +70,7 @@ class Match
 
   def feedback(result)
     # simply prints guess result in the terminal
+    puts "---- Result ----"
     puts "Black pegs: #{result[:black]}"
     puts "White pegs: #{result[:white]}"
   end
