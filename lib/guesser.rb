@@ -9,7 +9,7 @@ class Guesser
     # initialize the empty list of guesses
     guess_list = []
     # Ask to pick a color and check that no more and no less than 4 colors are inside.
-    # Also check if all teh color inside guess_list are included in the original color_list
+    # Also check if all the color inside guess_list are included in the original color_list
     until guess_list.count == 4 && guess_list.all? { |color| @colors_list.include?(color) }
       puts "Please #{@name}, pick four colors from #{@colors_list}. Order matters. Choose...wisely!"
       # get the answer from the player
@@ -18,7 +18,7 @@ class Guesser
       guess_list = color.split
     end
     # if picks are accepted, give feedback
-    puts "Guess accepted. Your pick are #{guess_list}. Good Luck!"
+    puts "Guess accepted. Your picks are #{guess_list}. Good Luck!"
     # return the guesses
     guess_list
   end

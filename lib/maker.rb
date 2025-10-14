@@ -8,7 +8,7 @@ class Maker
   def make_code
     code_list = Array.new(4) { @colors_list.sample }
     # TO DO: delete the puts statement once game is done
-    puts "#{@name} chose #{code_list}"
+    puts "#{@name} chose the code #{code_list}"
     code_list
   end
 end

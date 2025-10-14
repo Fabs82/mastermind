@@ -9,28 +9,41 @@ class Match
     @colors_list = %w[RED BLUE YELLOW GREEN PURPLE ORANGE]
     @maker = Maker.new("Computer", @colors_list)
     @guesser = Guesser.new("Player", @colors_list)
+    @storage = []
+    @turn_number = 1
   end
 
   def play_game
     @secret_code = @maker.make_code
-    single_round
+    game_is_on = true
+    while game_is_on
+      puts "\n---- TURN:#{@turn_number} ----"
+      if single_round == true
+        puts "You found the code. Congratulations!"
+        break
+      elsif @turn_number == 10
+        puts "Time is up! You lost"
+        break
+      else
+        @turn_number += 1
+        puts "---- Previous guess ----"
+        storage.each { |guess| p guess }
+      end
+    end
   end
 
   def single_round
     guess = @guesser.make_guess
-    is_equal?(@secret_code, guess)
+    @storage.append(guess)
+    return true if is_equal?(@secret_code, guess)
+
     result = check_guess(@secret_code, guess)
     feedback(result)
   end
 
   def is_equal?(code, guess)
     # check the equality of the strings
-    if code == guess
-      puts "You found the code. Congratulations!"
-      true
-    else
-      false
-    end
+    code == guess
   end
 
   def check_guess(code, guess)
@@ -60,10 +73,8 @@ class Match
   end
 
   def feedback(result)
+    # simply prints guess result in the terminal
     puts "Black pegs: #{result[:black]}"
     puts "White pegs: #{result[:white]}"
   end
 end
-
-match = Match.new
-match.play_game
