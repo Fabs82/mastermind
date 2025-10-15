@@ -1,14 +1,14 @@
-# A class that manages the player who creates the secret code. It takes a name and choose the colors combination
+# A class that manages the secret code creator. It takes a name and choose the colors combination
 class Maker
+  attr_reader :name
+
   def initialize(name, list)
     @name = name
     @colors_list = list
   end
 
   def make_code
-    code_list = Array.new(4) { @colors_list.sample }
-    # TO DO: delete the puts statement once game is done
-    puts "#{@name} chose the code #{code_list}"
-    code_list
+    raise NotImplementedError,
+          "This is a parent class. A subclass like HumanMaker must implement its own 'make_code' method."
   end
 end

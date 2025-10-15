@@ -1,5 +1,9 @@
 require_relative "maker"
+require_relative "maker_human"
+require_relative "maker_computer"
 require_relative "guesser"
+require_relative "guesser_human"
+require_relative "guesser_computer"
 
 # Class that manages the game flow.
 class Match
@@ -7,10 +11,29 @@ class Match
 
   def initialize
     @colors_list = %w[RED BLUE YELLOW GREEN PURPLE ORANGE]
-    @maker = Maker.new("Computer", @colors_list)
-    @guesser = Guesser.new("Player", @colors_list)
     @storage = []
     @turn_number = 1
+    # maker and guesser are chosen by the Player
+    choose_roles
+    puts "Code will be created by the #{@maker.name}"
+    puts "Guess will be made by #{@guesser.name}"
+  end
+
+  def choose_roles
+    puts "Guesser or Maker?"
+    answer = gets.chomp.downcase
+    until %w[maker guesser].include?(answer)
+      puts "Guesser or Maker?"
+      answer = gets.chomp.downcase
+    end
+    case answer
+    when "guesser"
+      @guesser = HumanGuesser.new("Player", @colors_list)
+      @maker = ComputerMaker.new("Computer", @colors_list)
+    when "maker"
+      @guesser = ComputerGuesser.new("Computer", @colors_list)
+      @maker = HumanMaker.new("Player", @colors_list)
+    end
   end
 
   def play_game
