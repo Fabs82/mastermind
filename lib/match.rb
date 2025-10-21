@@ -41,7 +41,7 @@ class Match
     while @turn_number <= 10
       puts "\n---- TURN:#{@turn_number} ----"
       if single_round == true
-        puts "You found the code. Congratulations!"
+        puts "Code found. Congratulations!"
         return
       end
       @turn_number += 1
@@ -58,6 +58,7 @@ class Match
 
     result = check_guess(@secret_code, guess)
     feedback(result)
+    @guesser.process_feedback(guess, result)
   end
 
   def is_equal?(code, guess)
@@ -66,7 +67,7 @@ class Match
   end
 
   def check_guess(code, guess)
-    # initialiye the counts and duplicate the original arrays to avoid changing them
+    # initialize the counts and duplicate the original arrays to avoid changing them
     black_peg = 0
     white_peg = 0
     code_copy = code.dup

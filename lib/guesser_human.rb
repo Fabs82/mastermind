@@ -18,4 +18,6 @@ class HumanGuesser < Guesser
     # return the guesses
     guess_list
   end
+
+  def process_feedback(last_guess, feedback_hash); end
 end
