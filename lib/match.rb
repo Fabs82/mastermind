@@ -16,18 +16,21 @@ class Match
     @storage = []
     @turn_number = 1
     # maker and guesser are chosen by the Player
-    choose_roles
+    define_roles
     puts "Code will be created by the #{@maker.name}"
     puts "Guess will be made by #{@guesser.name}"
   end
 
-  def choose_roles
-    puts "Guesser or Maker?"
-    answer = gets.chomp.downcase
-    until %w[maker guesser].include?(answer)
+  def ask_roles
+    loop do
       puts "Guesser or Maker?"
       answer = gets.chomp.downcase
+      return answer if %w[maker guesser].include?(answer)
     end
+  end
+
+  def define_roles
+    answer = ask_roles
     case answer
     when "guesser"
       @guesser = HumanGuesser.new("Player", @colors_list)
