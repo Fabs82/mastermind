@@ -50,10 +50,14 @@ class Match
         return
       end
       @turn_number += 1
-      puts "---- Previous guess ----"
-      @storage.each { |guess| p guess }
+      store_previous_guess
     end
     puts "Time is up! You lost"
+  end
+
+  def store_previous_guess
+    puts "---- Previous guess ----"
+    @storage.each { |guess| p guess }
   end
 
   def single_round
